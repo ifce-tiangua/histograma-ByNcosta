@@ -1,42 +1,41 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <time.h>
-
-void ImprimirHist(int* Nrvendas[], int NrCateg);
-int main() {
-    int NrCateg = 5; // Defina um valor fixo para NrCateg
+#include <string.h>
+int main(){
+    int NrCateg;
+    printf( " ");
+    scanf( "%d", &NrCateg);
     int* Nrvendas[NrCateg];
-
-    // Simulando os dados sem scanf
-    int vendas[] = {10, 5, 7, 3, 0};  // Simulando os números de vendas para as categorias
-
-    for (int i = 0; i < NrCateg; i++) {
-        Nrvendas[i] = (int*)malloc(sizeof(int)); // Aloca memória para cada categoria
+        for (int i = 0; i < NrCateg; i++) {
+        Nrvendas[i] = (int*)malloc(sizeof(int));
         if (Nrvendas[i] == NULL) {
-            return 1;  // Retorna 1 em caso de erro de alocação
-        }
-        *Nrvendas[i] = vendas[i]; // Atribui o valor da venda de cada categoria
+            printf( "Erro memoria alocada!.\n");
+             }
+        printf( "%d:", i + 1);
+        scanf( "%d",Nrvendas[i]);
     }
-
-    ImprimirHist(Nrvendas, NrCateg); // Chama a função de impressão
-
-    // Libera a memória alocada
-    for (int i = 0; i < NrCateg; i++) {
+      ImprimirHist(Nrvendas, NrCateg);
+    for (int i = 0; i < NrCateg; i++){
         free(Nrvendas[i]);
     }
-
+    free(Nrvendas);
     return 0;
 }
-
-void ImprimirHist(int* Nrvendas[], int NrCateg) {
+void ImprimirHist(int* Nrvendas[], int NrCateg){
     for (int i = 0; i < NrCateg; i++) {
+        printf("%d ", *Nrvendas[i]);
         if (*Nrvendas[i] > 0) {
-            for (int j = 0; j < *Nrvendas[i]; j++) {
-                // Aqui seria o local para imprimir os asteriscos (*)
-                // Em vez de usar printf, poderia acumular asteriscos em uma string ou processar de outra forma.
+          for (int j = 0; j < *Nrvendas[i]; j++) {
+                printf("*");
             }
         } else {
-            // Aqui trataria o caso de não haver vendas
+        printf("0");
         }
+        printf("\n");
     }
 }
+
+
+
+
+
